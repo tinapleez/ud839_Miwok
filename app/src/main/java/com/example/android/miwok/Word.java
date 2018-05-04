@@ -33,7 +33,10 @@ public class Word {
     private String mMiwokTranslation;
 
     /** Image for the Miwok word     */
-    private int mImageResourceId;
+    private int mImageResourceId = NO_IMAGE_PROVIDED;
+
+    /** Used to determine if the word has an image associated with it */
+    private static final int NO_IMAGE_PROVIDED = -1;
 
 
     /**
@@ -79,5 +82,10 @@ public class Word {
      */
     public int getImageResourceId() {
         return mImageResourceId;
+    }
+
+    /** Determines whether word has an image, resource Ids would be   */
+    public boolean hasImage() {
+        return mImageResourceId != NO_IMAGE_PROVIDED;
     }
 }

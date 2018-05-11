@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:background="@color/tan_background"
     android:minHeight="@dimen/list_item_height"
-    android:background="@color/tan_background">
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/image_view_list"
@@ -13,32 +13,32 @@
         android:layout_height="@dimen/list_item_height"/>
 
     <LinearLayout
+        android:id="@+id/text_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/category_numbers">
+        android:orientation="vertical">
 
     <TextView
+        android:id="@+id/miwok_text_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="bottom"
+        android:paddingLeft="@dimen/text_view_paddingLeft"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@android:color/white"
         android:textStyle="bold"
-        android:paddingLeft="@dimen/text_view_paddingLeft"
-        android:id="@+id/miwok_text_view"
         tools:text="lutti"/>
 
     <TextView
+        android:id="@+id/default_text_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="top"
+        android:paddingLeft="@dimen/text_view_paddingLeft"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@android:color/white"
-        android:paddingLeft="@dimen/text_view_paddingLeft"
-        android:id="@+id/default_text_view"
         tools:text="one"/>
     </LinearLayout>
 </LinearLayout>

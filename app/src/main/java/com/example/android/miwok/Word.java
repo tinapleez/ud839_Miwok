@@ -26,17 +26,20 @@ package com.example.android.miwok;
  */
 public class Word {
 
+    /**
+     * Used to determine if the word has an image associated with it
+     */
+    private static final int NO_IMAGE_PROVIDED = -1;
     /** Default translation for the word */
     private String mDefaultTranslation;
-
     /** Miwok translation for the word */
     private String mMiwokTranslation;
-
     /** Image for the Miwok word     */
     private int mImageResourceId = NO_IMAGE_PROVIDED;
-
-    /** Used to determine if the word has an image associated with it */
-    private static final int NO_IMAGE_PROVIDED = -1;
+    /**
+     * Sound file for the Miwok word
+     */
+    private int mSoundResourceId;
 
 
     /**
@@ -45,10 +48,13 @@ public class Word {
      * @param defaultTranslation is the word in a language that the user is already familiar with
      *                           (such as English)
      * @param miwokTranslation is the word in the Miwok language
+     *
+     * @param soundResourceId is the sound file for the word
      */
-    public Word(String defaultTranslation, String miwokTranslation) {
+    public Word(String defaultTranslation, String miwokTranslation, int soundResourceId) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
+        mSoundResourceId = soundResourceId;
     }
 
     /**
@@ -56,11 +62,13 @@ public class Word {
      * @param defaultTranslation is the language of the user
      * @param miwokTranslation is the Miwok word
      * @param imageResourceId is the image for the word
+     * @param soundResourceId is the sound file for the word
      */
-    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId){
+    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId, int soundResourceId ){
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
         mImageResourceId = imageResourceId;
+        mSoundResourceId = soundResourceId;
     }
 
     /**
@@ -88,4 +96,10 @@ public class Word {
     public boolean hasImage() {
         return mImageResourceId != NO_IMAGE_PROVIDED;
     }
+
+    /**
+     * Get the resource ID for the sound file.
+     */
+    public int getSoundResourceId() {
+        return mSoundResourceId;}
 }

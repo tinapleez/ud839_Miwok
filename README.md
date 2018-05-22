@@ -49,9 +49,10 @@ the License.
 NoTICE: Addition by Tina Taylor 
 Notes for Lessons on Audio Focus
 Global variables created for the AudioManager instance, and the Listener:
+
+
     /** Handles audio focus when playing a sound file */
     private AudioManager mAudioManager;
-
     /**
      * This listener gets triggered whenever the audio focus changes
      * (i.e., we gain or lose audio focus because of another app or device).

@@ -82,7 +82,12 @@ Global variables created for the AudioManager instance, and the Listener:
         }
     };
 
-onCreate method, added to onItemClickListener:
+onCreate method, 
+
+        // Create and setup the {@link AudioManager} to request audio focus
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+added to onItemClickListener:
 
                 // Request audio focus so in order to play the audio file. The app needs to play a
                 // short audio file, so we will request audio focus with a short amount of time

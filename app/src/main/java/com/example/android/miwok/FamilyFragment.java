@@ -17,12 +17,10 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NumbersFragment extends Fragment {
-    /**
-     * Handles playback of all the sound files
-     */
-    private MediaPlayer mMediaPlayer;
+public class FamilyFragment extends Fragment {
 
+
+    private MediaPlayer mMediaPlayer;
     /**
      * Handles audio focus when playing a sound file
      */
@@ -67,7 +65,7 @@ public class NumbersFragment extends Fragment {
         }
     };
 
-    public NumbersFragment() {
+    public FamilyFragment() {
         // Required empty public constructor
     }
 
@@ -79,49 +77,40 @@ public class NumbersFragment extends Fragment {
         // Create and setup the {@link AudioManager} to request audio focus
         mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
 
-        // Array list of English number words and Miwok translations
+        // An array list of English family words and the Miwok translation
         final ArrayList<Word> words = new ArrayList<Word>();
-        words.add(new Word("one", "lutti", R.drawable.number_one, R.raw.number_one));
-        words.add(new Word("two", "otiiko", R.drawable.number_two, R.raw.number_two));
-        words.add(new Word("three", "tolookosu", R.drawable.number_three, R.raw.number_three));
-        words.add(new Word("four", "oyyisa", R.drawable.number_four, R.raw.number_four));
-        words.add(new Word("five", "massokka", R.drawable.number_five, R.raw.number_five));
-        words.add(new Word("six", "temmokka", R.drawable.number_six, R.raw.number_six));
-        words.add(new Word("seven", "kenekaku", R.drawable.number_seven, R.raw.number_seven));
-        words.add(new Word("eight", "kawinta", R.drawable.number_eight, R.raw.number_eight));
-        words.add(new Word("nine", "wo’e", R.drawable.number_nine, R.raw.number_nine));
-        words.add(new Word("ten", "na’aacha", R.drawable.number_ten, R.raw.number_ten));
+        words.add(new Word("father", "әpә", R.drawable.family_father, R.raw.family_father));
+        words.add(new Word("mother", "әṭa", R.drawable.family_mother, R.raw.family_mother));
+        words.add(new Word("son", "angsi", R.drawable.family_son, R.raw.family_son));
+        words.add(new Word("daughter", "tune", R.drawable.family_daughter, R.raw.family_daughter));
+        words.add(new Word("older brother", "taachi", R.drawable.family_older_brother, R.raw.family_older_brother));
+        words.add(new Word("younger brother", "chalitti", R.drawable.family_younger_brother, R.raw.family_younger_brother));
+        words.add(new Word("older sister", "teṭe", R.drawable.family_older_sister, R.raw.family_older_sister));
+        words.add(new Word("younger sister", "kolliti", R.drawable.family_younger_sister, R.raw.family_younger_sister));
+        words.add(new Word("grandmother ", "ama", R.drawable.family_grandmother, R.raw.family_grandmother));
+        words.add(new Word("grandfather", "paapa", R.drawable.family_grandfather, R.raw.family_grandfather));
 
-        // Create an {@link WordAdapter}, whose data source is a word_list_view of {@link Word}s. The
-        // adapter knows how to create word_list_view items for each item in the word_list_view.
-        WordAdapter adapter = new WordAdapter(getActivity(), words, R.color.category_numbers);
+        WordAdapter adapter = new WordAdapter(getActivity(), words, R.color.category_family);
 
-        // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
-        // There should be a {@link ListView} with the view ID called word_list_view, which is declared in the
-        // word_list.xml file.
         ListView listView = rootView.findViewById(R.id.word_list_view);
 
-        // Make the {@link ListView} use the {@link WordAdapter} we created above, so that the
-        // {@link ListView} will display word_list_view items for each {@link Word} in the word_list_view.
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                // New Word object to grab position data for this click
-                Word word = words.get(position);
                 // Release the media player if it currently exists because we are about to
                 // play a different sound file
                 releaseMediaPlayer();
+                // New Word object to grab position data for this click
+                Word word = words.get(position);
 
                 // Request audio focus so in order to play the audio file. The app needs to play a
                 // short audio file, so we will request audio focus with a short amount of time
                 // with AUDIOFOCUS_GAIN_TRANSIENT.
                 int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
-                        // Use the music stream.
-                        AudioManager.STREAM_MUSIC,
-                        // Request transient focus.
-                        AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+                        AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
 
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                     // Start playback since we now have audio focus
@@ -142,8 +131,6 @@ public class NumbersFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        // When the activity is stopped, release the media player resources because we won't
-        // be playing any more sounds.
         releaseMediaPlayer();
     }
 
